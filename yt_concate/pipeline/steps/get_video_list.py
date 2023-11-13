@@ -6,7 +6,7 @@ from yt_concate.settings import API_KEY
 
 
 class GetVideoList(Step):
-    def process(self, inputs):
+    def process(self, data, inputs):
         channel_id = inputs['channel_id']
         api_key = API_KEY
 
