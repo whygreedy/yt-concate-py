@@ -1,8 +1,9 @@
 from yt_concate.pipeline.pipeline import Pipeline
 from yt_concate.pipeline.steps.get_video_list import GetVideoList
+from yt_concate.pipeline.steps.prefligt import Preflight
 
 
-CHANNEL_ID = 'UCr90FXGOO8nAE9B6FAUeTNA'
+CHANNEL_ID = 'UCKSVUHI9rbbkXhvAXK-2uxA'
 
 
 def main():
@@ -12,6 +13,7 @@ def main():
     }
 
     steps = [
+                Preflight,
                 GetVideoList,
             ]
 
