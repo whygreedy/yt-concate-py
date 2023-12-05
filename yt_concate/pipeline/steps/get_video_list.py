@@ -12,6 +12,7 @@ class GetVideoList(Step):
         api_key = API_KEY
 
         if Utils().video_list_file_exist(channel_id):
+            print('Found existing video list file...')
             return self.read_file(Utils().get_video_list_filepath(channel_id))
 
         base_video_url = 'https://www.youtube.com/watch?v='
