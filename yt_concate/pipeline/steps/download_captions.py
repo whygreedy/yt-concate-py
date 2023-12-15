@@ -6,6 +6,9 @@ from yt_concate.pipeline.steps.step import Step
 class DownloadCaptions(Step):
     def process(self, data, inputs, utils):
         for video_link in data:
+            if utils.caption_file_exist(video_link):
+                print('found existing caption file')
+                continue
             yt = YouTube(video_link)
             subtitles = yt.captions.all()
             try:
