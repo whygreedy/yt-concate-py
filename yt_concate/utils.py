@@ -20,14 +20,3 @@ class Utils:
     def video_list_file_exist(self, channel_id):
         path = self.get_video_list_filepath(channel_id)
         return os.path.exists(path) and os.path.getsize(path) > 0
-
-    @staticmethod
-    def get_video_id(video_link):
-        return video_link.split("?v=")[1]
-
-    def get_caption_path(self, video_link):
-        return os.path.join(CAPTIONS_DIR, self.get_video_id(video_link) + '.txt')
-
-    def caption_file_exist(self, video_link):
-        path = self.get_caption_path(video_link)
-        return os.path.exists(path) and os.path.getsize(path) > 0
