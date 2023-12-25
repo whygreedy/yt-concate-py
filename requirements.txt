@@ -1,2 +1,2 @@
 python-dotenv==1.0.0
-pytubefix==1.9.0
+pytubefix==1.12.0

@@ -11,6 +11,8 @@ class YT:
         self.caption_path = self.get_caption_path()
         self.caption_file_exist = self.caption_file_exist()
         self.video_path = self.get_video_path()
+        self.video_filename = self.get_video_filename()
+        self.video_file_exist = self.video_file_exist()
         self.captions = None
 
 
@@ -26,7 +28,14 @@ class YT:
         return os.path.exists(path) and os.path.getsize(path) > 0
 
     def get_video_path(self):
-        return os.path.join(VIDEOS_DIR, self.id + '.txt')
+        return os.path.join(VIDEOS_DIR, self.id + '.mp4')
+
+    def get_video_filename(self):
+        return self.id + '.mp4'
+
+    def video_file_exist(self):
+        path = self.video_path
+        return os.path.exists(path) and os.path.getsize(path) > 0
 
     def __str__(self):
         return '<YT(' + self.video_link + ')>'
