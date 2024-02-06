@@ -1,24 +1,37 @@
+import os
+
 from moviepy.editor import VideoFileClip
 from moviepy.editor import concatenate_videoclips
 
 from yt_concate.pipeline.steps.step import Step
+
+from yt_concate.settings import VIDEOS_DIR
+from yt_concate.settings import OUTPUTS_DIR
 
 
 class EditVideo(Step):
     def process(self, data, inputs, utils):
         clips = []
         for found in data:
+            print(found.yt.video_link)
             print(found.time)
             start, end = self.parse_caption_time(found.time)
-            video = VideoFileClip(found.yt.video_path).subclip(start, end)
+            print(start, end)
+            filepath = os.path.join(VIDEOS_DIR, found.yt.id + '.mp4')
+            video = VideoFileClip(filepath).subclip(start, end)
             clips.append(video)
             if len(clips) >= inputs['limit']:
                 break
         final_clip = concatenate_videoclips(clips, method="compose")
-        temp_audio_filepath = utils.get_temp_audio_filepath(inputs['channel_id'], inputs['search_term'])
-        output_filepath = utils.get_output_video_filepath(inputs['channel_id'], inputs['search_term'])
+        temp_audio_filepath = os.path.join(OUTPUTS_DIR, inputs['channel_id'] + '_' + inputs['search_term'] + 'TEMP.mp4')
+        output_filepath = os.path.join(OUTPUTS_DIR, inputs['channel_id'] + '_' + inputs['search_term'] + '.mp4')
         final_clip.write_videofile(
-            output_filepath, remove_temp=False, temp_audiofile=temp_audio_filepath, audio_codec="aac", codec='libx264')
+            output_filepath,
+            remove_temp=False,
+            temp_audiofile=temp_audio_filepath,
+            audio_codec="aac",
+            codec='libx264',
+        )
 
     def parse_caption_time(self, caption_time):
         start, end = caption_time.split(' --> ')
@@ -28,4 +41,4 @@ class EditVideo(Step):
     def parse_time_str(time_str):
         h, m, s = time_str.split(':')
         s, ms = s.split(',')
-        return int(h), int(m), int(s) + int(ms)/1000
+        return float(h) * 3600 + float(m) * 60 + float(s) + float(ms) / 1000

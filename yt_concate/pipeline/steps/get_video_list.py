@@ -37,7 +37,7 @@ class GetVideoList(Step):
             except KeyError:
                 break
 
-        self.write_to_file(video_links, channel_id)
+        self.write_to_file(video_links, channel_id, utils)
         print(len(video_links))
         print(video_links)
         return video_links
