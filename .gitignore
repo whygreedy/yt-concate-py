@@ -1,5 +1,9 @@
+# output files
 downloads/
 outputs/
+
+# log file
+.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,9 +1,12 @@
+from yt_concate.logger import logger
+
 from yt_concate.pipeline.steps.step import Step
 from yt_concate.model.found import Found
 
 
 class Search(Step):
     def process(self, data, inputs, utils):
+        logger.info('SEARCHING THE TERM...')
         search_term = inputs['search_term']
         found = []
         for yt in data:
@@ -12,11 +15,11 @@ class Search(Step):
                 continue
             for caption in captions:
                 if search_term in caption:
-                    print('found')
+                    logger.info('found')
                     time = captions[caption]
                     f = Found(yt, caption, time)
                     found.append(f)
 
-        print(len(found))
-        print(found)
+        logger.info(f'found {len(found)} occurrences')
+        logger.info(found)
         return found
