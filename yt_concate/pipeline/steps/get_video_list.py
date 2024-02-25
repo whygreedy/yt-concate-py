@@ -1,9 +1,9 @@
 import urllib.request
 import json
-from yt_concate.logger import logger
 
 from yt_concate.pipeline.steps.step import Step
 from yt_concate.settings import API_KEY
+from yt_concate.logger import logger
 
 
 class GetVideoList(Step):
@@ -31,7 +31,9 @@ class GetVideoList(Step):
 
             for i in resp['items']:
                 if i['id']['kind'] == "youtube#video":
-                    video_links.append(base_video_url + i['id']['videoId'])
+                    video_link = base_video_url + i['id']['videoId']
+                    if video_link not in video_links:
+                        video_links.append(video_link)
 
             try:
                 next_page_token = resp['nextPageToken']
@@ -40,8 +42,8 @@ class GetVideoList(Step):
                 break
 
         self.write_to_file(video_links, channel_id, utils)
-        print(len(video_links))
-        print(video_links)
+        logger.info(f'{len(video_links)} videos from this channel')
+        logger.debug(video_links)
         return video_links
 
     def write_to_file(self, video_links, channel_id, utils):

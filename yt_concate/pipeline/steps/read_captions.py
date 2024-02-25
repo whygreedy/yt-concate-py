@@ -1,14 +1,14 @@
 import time
 import os
-from yt_concate.logger import logger
 
 from yt_concate.pipeline.steps.step import Step
 from yt_concate.settings import CAPTIONS_DIR
+from yt_concate.logger import logger
 
 
 class ReadCaptions(Step):
     def process(self, data, inputs, utils):
-        logger.info(f'READING CAPTIONS...')
+        logger.info('READING CAPTIONS...')
         for yt in data:
             logger.debug(f'reading yt : {yt.video_link}')
             filepath = os.path.join(CAPTIONS_DIR, yt.id + '.txt')

@@ -1,11 +1,12 @@
 import time
 import os
 import concurrent.futures
-from yt_concate.logger import logger
 
 from pytubefix import YouTube
+
 from yt_concate.pipeline.steps.step import Step
 from yt_concate.settings import CAPTIONS_DIR
+from yt_concate.logger import logger
 
 
 class DownloadCaptions(Step):
@@ -25,7 +26,7 @@ class DownloadCaptions(Step):
 
         end_time = time.time()
         elapsed_time = end_time - start_time
-        logger.info(f'Completed downloading captions')
+        logger.info('Completed downloading captions')
         logger.info(f'Downloaded {len(yt_)} new caption files')
         logger.info(f'Total running time for downloading captions : {elapsed_time} seconds')
         return data

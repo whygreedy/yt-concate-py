@@ -1,6 +1,5 @@
-from yt_concate.logger import logger
-
 from yt_concate.pipeline.steps.step import Step
+from yt_concate.logger import logger
 
 
 class Postflight(Step):

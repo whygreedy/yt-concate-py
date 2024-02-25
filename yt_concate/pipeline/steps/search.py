@@ -1,7 +1,6 @@
-from yt_concate.logger import logger
-
 from yt_concate.pipeline.steps.step import Step
 from yt_concate.model.found import Found
+from yt_concate.logger import logger
 
 
 class Search(Step):
@@ -15,7 +14,6 @@ class Search(Step):
                 continue
             for caption in captions:
                 if search_term in caption:
-                    logger.info('found')
                     time = captions[caption]
                     f = Found(yt, caption, time)
                     found.append(f)

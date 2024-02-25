@@ -1,5 +1,4 @@
 import os
-from yt_concate.logger import logger
 
 from moviepy.editor import VideoFileClip
 from moviepy.editor import concatenate_videoclips
@@ -7,21 +6,28 @@ from moviepy.editor import concatenate_videoclips
 from yt_concate.pipeline.steps.step import Step
 from yt_concate.settings import VIDEOS_DIR
 from yt_concate.settings import OUTPUTS_DIR
+from yt_concate.logger import logger
 
 
 class EditVideo(Step):
     def process(self, data, inputs, utils):
         logger.info('EDITING VIDEO...')
         clips = []
+        i = 0
         for found in data:
-            logger.info(f'{found.yt.video_link}')
-            logger.info(f'{found.time}')
+            logger.debug(f'{found.yt.video_link}')
+            logger.debug(f'{found.time}')
             start, end = self.parse_caption_time(found.time)
-            logger.info(f'{start, end}')
+            logger.debug(f'{start, end}')
             filepath = os.path.join(VIDEOS_DIR, found.yt.id + '.mp4')
+            if not os.path.exists(filepath):
+                logger.info(f'video file not found: {filepath}')
+                continue
             video = VideoFileClip(filepath).subclip(start, end)
             clips.append(video)
-            if len(clips) >= inputs['limit']:
+            i += 1
+            logger.info(f'clip has been added {filepath}, {start, end}, {i}')
+            if len(clips) >= int(inputs['limit']):
                 break
         final_clip = concatenate_videoclips(clips, method="compose")
         temp_audio_filepath = os.path.join(OUTPUTS_DIR, inputs['channel_id'] + '_' + inputs['search_term'] + 'TEMP.mp4')

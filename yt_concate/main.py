@@ -21,13 +21,14 @@ LIMIT = 10
 
 
 def print_usage():
-    print('python3 main.py -c <channel_id> -s <search_term>')
-    print('python3 main.py --channel_id <channel_id> --search_term <search_term>')
+    print('python3 main.py -c <channel_id> -s <search_term> -l <limit>')
+    print('python3 main.py --channel_id <channel_id> --search_term <search_term> --limit <limit>')
 
     print('python3 main.py OPTIONS')
     print('OPTIONS:')
     print('{:>10} {:<20}{}'.format('-c', '--channel_id', 'Channel id of YouTube channel to download videos'))
     print('{:>10} {:<20}{}'.format('-s', '--search_term', 'A search term used to extract video clips'))
+    print('{:>10} {:<20}{}'.format('-l', '--limit', 'Maximum number of video clips to concatenate'))
 
 
 def main():
@@ -38,8 +39,8 @@ def main():
         'limit': LIMIT,
     }
 
-    short_opts = 'hc:s:'
-    long_opts = 'help channel_id= search_term='.split()
+    short_opts = 'hc:s:l:'
+    long_opts = 'help channel_id= search_term= limit='.split()
 
     try:
         opts, args = getopt.getopt(sys.argv[1:], short_opts, long_opts)
@@ -54,6 +55,8 @@ def main():
             inputs['channel_id'] = arg
         elif opt in ("-s", "--search_term"):
             inputs['search_term'] = arg
+        elif opt in ("-l", "--limit"):
+            inputs['limit'] = arg
         else:
             print_usage()
             sys.exit(2)

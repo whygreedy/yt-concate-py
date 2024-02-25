@@ -1,12 +1,12 @@
 import time
 import concurrent.futures
-from yt_concate.logger import logger
 
 from pytubefix import YouTube
 from pytubefix.cli import on_progress
 
 from yt_concate.pipeline.steps.step import Step
 from yt_concate.settings import VIDEOS_DIR
+from yt_concate.logger import logger
 
 
 class DownloadVideos(Step):
@@ -33,13 +33,12 @@ class DownloadVideos(Step):
 
         end_time = time.time()
         elapsed_time = end_time - start_time
-        logger.info(f'Completed downloading all videos')
+        logger.info('Completed downloading all videos')
         logger.info(f'Total running time for downloading videos : {elapsed_time} seconds')
 
         return data
 
     def download_videos(self, yt):
-
         video_link = str(yt.video_link)
         logger.debug(f'prepare to download yt video : {video_link}')
         youtube = YouTube(video_link, on_progress_callback=on_progress)
