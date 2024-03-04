@@ -1,6 +1,6 @@
-from yt_concate.pipeline.steps.step import Step
-from yt_concate.model.found import Found
-from yt_concate.logger import logger
+from yt_concate_py.pipeline.steps.step import Step
+from yt_concate_py.model.found import Found
+from yt_concate_py.logger import logger
 
 
 class Search(Step):

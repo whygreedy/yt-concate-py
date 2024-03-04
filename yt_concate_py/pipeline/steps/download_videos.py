@@ -4,9 +4,9 @@ import concurrent.futures
 from pytubefix import YouTube
 from pytubefix.cli import on_progress
 
-from yt_concate.pipeline.steps.step import Step
-from yt_concate.settings import VIDEOS_DIR
-from yt_concate.logger import logger
+from yt_concate_py.pipeline.steps.step import Step
+from yt_concate_py.settings import VIDEOS_DIR
+from yt_concate_py.logger import logger
 
 
 class DownloadVideos(Step):

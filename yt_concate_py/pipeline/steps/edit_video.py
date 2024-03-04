@@ -3,10 +3,10 @@ import os
 from moviepy.editor import VideoFileClip
 from moviepy.editor import concatenate_videoclips
 
-from yt_concate.pipeline.steps.step import Step
-from yt_concate.settings import VIDEOS_DIR
-from yt_concate.settings import OUTPUTS_DIR
-from yt_concate.logger import logger
+from yt_concate_py.pipeline.steps.step import Step
+from yt_concate_py.settings import VIDEOS_DIR
+from yt_concate_py.settings import OUTPUTS_DIR
+from yt_concate_py.logger import logger
 
 
 class EditVideo(Step):
@@ -26,7 +26,7 @@ class EditVideo(Step):
             try:
                 video = VideoFileClip(filepath)
                 if end > video.duration:
-                    logger.info(f'Time range exceeds video duration for {filepath}, adjusting...')
+                    logger.info(f'end time exceeds video duration for {filepath}, adjusting {end} to {video.duration}')
                     end = video.duration
                 video = VideoFileClip(filepath).subclip(start, end)
                 clips.append(video)

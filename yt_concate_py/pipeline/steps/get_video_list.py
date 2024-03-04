@@ -1,9 +1,9 @@
 import urllib.request
 import json
 
-from yt_concate.pipeline.steps.step import Step
-from yt_concate.settings import API_KEY
-from yt_concate.logger import logger
+from yt_concate_py.pipeline.steps.step import Step
+from yt_concate_py.settings import API_KEY
+from yt_concate_py.logger import logger
 
 
 class GetVideoList(Step):

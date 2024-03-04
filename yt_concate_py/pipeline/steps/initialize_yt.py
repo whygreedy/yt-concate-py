@@ -1,6 +1,6 @@
-from yt_concate.pipeline.steps.step import Step
-from yt_concate.model.yt import YT
-from yt_concate.logger import logger
+from yt_concate_py.pipeline.steps.step import Step
+from yt_concate_py.model.yt import YT
+from yt_concate_py.logger import logger
 
 
 class InitializeYT(Step):

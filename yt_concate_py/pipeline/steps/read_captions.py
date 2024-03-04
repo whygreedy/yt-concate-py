@@ -1,9 +1,9 @@
 import time
 import os
 
-from yt_concate.pipeline.steps.step import Step
-from yt_concate.settings import CAPTIONS_DIR
-from yt_concate.logger import logger
+from yt_concate_py.pipeline.steps.step import Step
+from yt_concate_py.settings import CAPTIONS_DIR
+from yt_concate_py.logger import logger
 
 
 class ReadCaptions(Step):
