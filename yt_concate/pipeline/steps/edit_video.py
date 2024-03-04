@@ -23,12 +23,19 @@ class EditVideo(Step):
             if not os.path.exists(filepath):
                 logger.info(f'video file not found: {filepath}')
                 continue
-            video = VideoFileClip(filepath).subclip(start, end)
-            clips.append(video)
-            i += 1
-            logger.info(f'clip has been added {filepath}, {start, end}, {i}')
-            if len(clips) >= int(inputs['limit']):
-                break
+            try:
+                video = VideoFileClip(filepath)
+                if end > video.duration:
+                    logger.info(f'Time range exceeds video duration for {filepath}, adjusting...')
+                    end = video.duration
+                video = VideoFileClip(filepath).subclip(start, end)
+                clips.append(video)
+                i += 1
+                logger.info(f'clip has been added {filepath}, {start, end}, {i}')
+                if len(clips) >= int(inputs['limit']):
+                    break
+            except Exception as e:
+                logger.info(f'error for editing video {filepath}, {start, end} and the error is {str(e)}')
         final_clip = concatenate_videoclips(clips, method="compose")
         temp_audio_filepath = os.path.join(OUTPUTS_DIR, inputs['channel_id'] + '_' + inputs['search_term'] + 'TEMP.mp4')
         output_filepath = os.path.join(OUTPUTS_DIR, inputs['channel_id'] + '_' + inputs['search_term'] + '.mp4')
