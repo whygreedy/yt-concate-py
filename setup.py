@@ -18,7 +18,7 @@ URL = 'https://github.com/whygreedy/yt-concate-py'
 EMAIL = 'cindyyeah9@gmail.com'
 AUTHOR = 'Cindy Yeh'
 REQUIRES_PYTHON = '>=3.9.0'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
