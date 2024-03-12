@@ -10,6 +10,9 @@ YouTube is the largest and the most popular video-sharing platform.\
 As a YouTube user and a python programmer, I was building something related to my interest with a tutorial, then *yt-concate-py* was born.\
 With this app, you can easily extract and concatenate video clips by a topic word that interested you the most from a YouTube channel.
 
+For example, these are screenshots of the output video that concatenates video clips mentioned "taiwan" from the [YouTube channel of 莫彩曦Hailey](https://www.youtube.com/@haileymocaixi).
+![resultImage](https://raw.githubusercontent.com/whygreedy/yt-concate-py/main/images/result.jpg)
+
 ## Features
 - supports in all languages\
 (As long as the language for a word is the same as the language for the first subtitle option of a video)
@@ -78,9 +81,20 @@ main.main()
 ```
 
 
-## Example
+## Example & Result
+Using the command line interface
 
-## Result
+concatenate video clips that mentioned "BMW" from default [YouTube channel of Supercar Blondie](https://www.youtube.com/@SupercarBlondie)
+```bash
+python3 main.py -s BMW -l 20
+```
+![resultENImage](https://raw.githubusercontent.com/whygreedy/yt-concate-py/main/images/result_en_horizontal.jpg)
+
+concatenate video clips that mentioned "可愛" from the [YouTube channel of 金魚腦Goldfish Brain](https://www.youtube.com/@goldfishbrain)
+```bash
+python3 main.py -c UCTT5gtQU5rX8sUQnZaBqiVw -s 可愛 -l 30
+```
+![resultZHImage](https://raw.githubusercontent.com/whygreedy/yt-concate-py/main/images/result_zh_horizontal.jpg)
 
 ## Reference
 - [Python Advanced Course on Udemy](https://www.udemy.com/course/pythonadvanced/)
