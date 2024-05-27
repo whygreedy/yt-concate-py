@@ -1,7 +1,6 @@
 import sys
 import getopt
 sys.path.append('../')
-sys.path.append('/Users/cindy/Desktop/yt-concate/venv/lib/python3.9/site-packages')
 
 from yt_concate_py.pipeline.pipeline import Pipeline
 from yt_concate_py.pipeline.steps.prefligt import Preflight
