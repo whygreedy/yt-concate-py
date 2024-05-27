@@ -43,6 +43,10 @@ Activate venv
 ```bash
 source venv/bin/activate
 ```
+Install dependencies
+```bash
+pip install -r requirements.txt
+```
 Change directory to the folder that includes main.py file
 ```bash
 cd yt_concate_py
